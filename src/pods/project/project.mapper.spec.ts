@@ -4,6 +4,7 @@ import { mapProjectFromApiToVm } from './project.mapper';
 
 describe('./pods/project/mapper', () => {
   it('should return a default project with empty values when the provided project is undefined', () => {
+    // Arrange
     const project = undefined;
     const emptyProject = {
       id: '',
@@ -14,11 +15,14 @@ describe('./pods/project/mapper', () => {
       employees: [],
     };
 
+    // Act
     const result = mapProjectFromApiToVm(project);
 
+    // Assert
     expect(result).toEqual(emptyProject);
   });
   it('should return a default project with empty values when the provided project is null', () => {
+    // Arrange
     const project = null;
     const emptyProject = {
       id: '',
@@ -29,11 +33,14 @@ describe('./pods/project/mapper', () => {
       employees: [],
     };
 
+    // Act
     const result = mapProjectFromApiToVm(project);
 
+    // Assert
     expect(result).toEqual(emptyProject);
   });
   it('should return an object with values when a project is provided', () => {
+    // Arrange
     const project: apiModel.Project = {
       id: '1',
       name: 'Name',
@@ -63,8 +70,10 @@ describe('./pods/project/mapper', () => {
       ]
     };
 
+    // Act
     const result = mapProjectFromApiToVm(project);
 
+    // Assert
     expect(result).toEqual(projectWithValues);
   });
 });
