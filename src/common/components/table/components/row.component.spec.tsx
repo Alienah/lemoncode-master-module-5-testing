@@ -9,12 +9,15 @@ describe('common/table/RowComponent', () => {
       className: 'test-className',
       'data-testid': 'test-row',
     };
+    const tbody = document.createElement('tbody');
+    document.body.appendChild(tbody);
 
     // Act
     const { getByText, getByTestId } = render(
       <RowComponent {...props}>
         <td>{'Test rowData'}</td>
-      </RowComponent>
+      </RowComponent>,
+      { container: tbody }
     );
 
     // Assert
@@ -27,13 +30,16 @@ describe('common/table/RowComponent', () => {
     const props = {
       className: 'test-className',
     };
+    const tbody = document.createElement('tbody');
+    document.body.appendChild(tbody);
 
     // Act
     const { getByText } = render(
       <RowComponent {...props}>
         <td>{'Test rowData 1'}</td>
         <td>{'Test rowData 2'}</td>
-      </RowComponent>
+      </RowComponent>,
+      { container: tbody }
     );
 
     // Assert

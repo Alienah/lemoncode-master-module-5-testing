@@ -12,23 +12,44 @@ describe('common/table/BodyComponent', () => {
     const TestRowComponent: React.FunctionComponent<RowRendererProps<
       any
     >> = props => (
-      <RowComponent>
+      <RowComponent {...props}>
         <CellComponent>{props.row.testRow}</CellComponent>
       </RowComponent>
     );
 
     const props = {
-      rows: ([
-        { getRowProps: jest.fn(), original: { testRow: 1 } },
-        { getRowProps: jest.fn(), original: { testRow: 2 } },
-        { getRowProps: jest.fn(), original: { testRow: 3 } },
-      ] as unknown) as Row[],
+      rows: [
+        {
+          getRowProps: jest.fn().mockReturnValue({
+            key: Math.floor(Math.random() * 999999),
+            role: 'row',
+          }),
+          original: { testRow: 1 },
+        },
+        {
+          getRowProps: jest.fn().mockReturnValue({
+            key: Math.floor(Math.random() * 999999),
+            role: 'row',
+          }),
+          original: { testRow: 2 },
+        },
+        {
+          getRowProps: jest.fn().mockReturnValue({
+            key: Math.floor(Math.random() * 999999),
+            role: 'row',
+          }),
+          original: { testRow: 3 },
+        },
+      ] as unknown as Row[],
       rowRenderer: TestRowComponent,
       prepareRow: jest.fn(),
     };
 
+    const table = document.createElement('table');
+    document.body.appendChild(table);
+
     // Act
-    const { getByText } = render(<BodyComponent {...props} />);
+    const { getByText } = render(<BodyComponent {...props} />, {container: table});
 
     // Assert
     expect(getByText('1')).toBeInTheDocument();
