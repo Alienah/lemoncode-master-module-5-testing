@@ -47,7 +47,7 @@ describe('Login specs', () => {
   it('should navigate to the app when credentials are correct', () => {
     // Arrange
     const user = 'admin';
-    const password = 'test';
+    const password = 'tes';
 
     // Act
     cy.visit("/");
