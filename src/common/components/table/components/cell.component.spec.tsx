@@ -5,12 +5,15 @@ import { CellComponent } from './cell.component';
 describe('common/table/CellComponent', () => {
   it('should render as expected passing required properties', () => {
     // Arrange
+    const tr = document.createElement('tr');
+    document.body.appendChild(tr);
 
     // Act
     const { getByText } = render(
       <CellComponent>
         <h1>Test content</h1>
-      </CellComponent>
+      </CellComponent>,
+      { container: tr }
     );
 
     // Assert
