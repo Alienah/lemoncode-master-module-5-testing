@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { HashRouter, Switch } from 'react-router-dom';
 
-export const renderWithRouter = (component, routes) => {
+export const renderWithRouter = (component, routes, options?) => {
   return {
     ...render(
       <HashRouter>
@@ -10,5 +10,6 @@ export const renderWithRouter = (component, routes) => {
         {component}
       </HashRouter>
     ),
+    options
   };
 };
